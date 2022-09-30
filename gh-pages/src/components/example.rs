@@ -19,15 +19,15 @@ impl Component for Example {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(props: Self::Properties, _link: &Scope<Self>) -> Self {
         Example { props }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, props: Self::Properties) -> bool {
         self.props.neq_assign(props)
     }
 

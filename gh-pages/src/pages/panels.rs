@@ -10,15 +10,15 @@ impl Component for PanelExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
         PanelExamples
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 

@@ -1,5 +1,6 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
+use yew::html::Scope;
 
 prop_enum! {
     Color {
@@ -52,15 +53,15 @@ impl Component for Button {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Button { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Button { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, props: Self::Properties) -> bool {
         self.props.neq_assign(props)
     }
 
@@ -76,9 +77,9 @@ impl Component for Button {
             .extend(self.props.variant.map(|c| c.class(BTN_CLASS)));
 
         html! {
-            <button class=class
-                onclick=&self.props.onclick
-                disabled=self.props.disabled>
+            <button class={class}
+                onclick={&self.props.onclick}
+                disabled={self.props.disabled}>
                 { self.props.children.clone() }
             </button>
         }

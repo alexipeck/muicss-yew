@@ -1,4 +1,5 @@
 use yew::prelude::*;
+use yew::html::Scope;
 
 pub struct Divider;
 
@@ -6,15 +7,15 @@ impl Component for Divider {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(ctx: &Context<Self>) -> Self {
         Divider
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 
@@ -22,7 +23,7 @@ impl Component for Divider {
         const DIVIDER_CLASS: &str = "mui-divider";
         let class = Classes::from(DIVIDER_CLASS);
         html! {
-            <div class=class></div>
+            <div class={class}></div>
         }
     }
 }

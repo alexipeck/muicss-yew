@@ -1,5 +1,6 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
+use yew::html::Scope;
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct Props {
@@ -34,15 +35,15 @@ impl Component for Textarea {
     type Message = Msg;
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Textarea { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Textarea { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, props: Self::Properties) -> bool {
         self.props.neq_assign(props)
     }
 
@@ -69,11 +70,11 @@ impl Component for Textarea {
         };
 
         html! {
-            <div class=class>
-                <textarea onchange=&self.props.onchange
-                    disabled=self.props.disabled
-                    placeholder=self.props.placeholder
-                    value=self.props.value />
+            <div class={class}>
+                <textarea onchange={&self.props.onchange}
+                    disabled={self.props.disabled}
+                    placeholder={self.props.placeholder}
+                    value={self.props.value} />
                 { label }
             </div>
         }

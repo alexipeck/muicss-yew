@@ -1,5 +1,6 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
+use yew::html::Scope;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum InputType {
@@ -37,7 +38,7 @@ pub struct Props {
     #[prop_or_default]
     pub class: Classes,
     #[prop_or_default]
-    pub onchange: Callback<ChangeData>,
+    pub onchange: Callback<Event>,
     #[prop_or_default]
     pub input_type: InputType,
     #[prop_or_default]
@@ -61,15 +62,15 @@ impl Component for Input {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Input { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Input { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, props: Self::Properties) -> bool {
         self.props.neq_assign(props)
     }
 
@@ -96,12 +97,12 @@ impl Component for Input {
         };
 
         html! {
-            <div class=class>
-                <input type=self.props.input_type.input_type()
-                    onchange=&self.props.onchange
-                    disabled=self.props.disabled
-                    placeholder=self.props.placeholder
-                    value=self.props.value />
+            <div class={class}>
+                <input type={self.props.input_type.input_type()}
+                    onchange={&self.props.onchange}
+                    disabled={self.props.disabled}
+                    placeholder={self.props.placeholder}
+                    value={self.props.value} />
                 { label }
             </div>
         }
