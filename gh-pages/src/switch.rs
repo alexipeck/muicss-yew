@@ -1,8 +1,6 @@
 //! Borrowed from [Yew's router example](https://github.com/yewstack/yew/tree/master/examples/router).
 
-use yew::{
-    virtual_dom::VComp,
-};
+use yew::virtual_dom::VComp;
 use yew_router::prelude::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, Routable)]

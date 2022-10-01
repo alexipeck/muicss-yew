@@ -6,7 +6,7 @@ impl Component for Divider {
     type Message = ();
     type Properties = ();
 
-    fn create(ctx: &Context<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         Divider
     }
 
@@ -14,11 +14,11 @@ impl Component for Divider {
         false
     }
 
-    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+    fn changed(&mut self, _ctx: &Context<Self>) -> bool {
         false
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         const DIVIDER_CLASS: &str = "mui-divider";
         let class = Classes::from(DIVIDER_CLASS);
         html! {

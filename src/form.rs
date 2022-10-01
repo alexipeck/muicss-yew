@@ -1,6 +1,5 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
-use yew::html::Scope;
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct Props {
@@ -21,7 +20,9 @@ impl Component for Form {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Form { props: ctx.props().to_owned() }
+        Form {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
@@ -32,7 +33,7 @@ impl Component for Form {
         self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         const FORM_CLASS: &str = "mui-form";
         const FORM_CLASS_INLINE: &str = "mui-form--inline";
         let mut class = self.props.class.clone();

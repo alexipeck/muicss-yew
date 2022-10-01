@@ -1,6 +1,5 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
-use yew::html::Scope;
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct Props {
@@ -52,7 +51,9 @@ impl Component for Col {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Col { props: ctx.props().to_owned() }
+        Col {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
@@ -63,7 +64,7 @@ impl Component for Col {
         self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         const COL_CLASS: &str = "mui-col";
         let mut class = self.props.class.clone();
         class.push(COL_CLASS);

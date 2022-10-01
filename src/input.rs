@@ -1,6 +1,5 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
-use yew::html::Scope;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum InputType {
@@ -63,7 +62,9 @@ impl Component for Input {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Input { props: ctx.props().to_owned() }
+        Input {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
@@ -74,16 +75,12 @@ impl Component for Input {
         self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         const TEXTFIELD_CLASS: &str = "mui-textfield";
         const FLOAT_LABEL_CLASS: &str = "mui-textfield--float-label";
         const INVALID_CLASS: &str = "mui--is-invalid";
-        let mut class = self
-            .props
-            .class
-            .clone();
-        class
-            .push(TEXTFIELD_CLASS);
+        let mut class = self.props.class.clone();
+        class.push(TEXTFIELD_CLASS);
         if self.props.invalid {
             class.push(INVALID_CLASS);
         }

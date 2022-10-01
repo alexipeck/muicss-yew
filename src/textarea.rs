@@ -1,6 +1,5 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
-use yew::html::Scope;
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct Props {
@@ -36,7 +35,9 @@ impl Component for Textarea {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Textarea { props: ctx.props().to_owned() }
+        Textarea {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
@@ -52,10 +53,7 @@ impl Component for Textarea {
         const FLOAT_LABEL_CLASS: &str = "mui-textfield--float-label";
         const INVALID_CLASS: &str = "mui--is-invalid";
 
-        let mut class = self
-            .props
-            .class
-            .clone();
+        let mut class = self.props.class.clone();
         class.push(TEXTFIELD_CLASS);
         if self.props.invalid {
             class.push(INVALID_CLASS);

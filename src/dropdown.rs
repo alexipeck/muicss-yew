@@ -5,7 +5,6 @@ use crate::{
 };
 use yew::prelude::*;
 use yewtil::NeqAssign;
-use yew::html::Scope;
 
 prop_enum! {
     Placement {
@@ -63,7 +62,9 @@ impl Component for Dropdown {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Dropdown { props: ctx.props().to_owned() }
+        Dropdown {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
@@ -74,12 +75,9 @@ impl Component for Dropdown {
         self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         const DROPDOWN_CLASS: &str = "mui-dropdown";
-        let mut class = self
-            .props
-            .class
-            .clone();
+        let mut class = self.props.class.clone();
         class.push(DROPDOWN_CLASS);
         class.push(self.props.placement.map(|c| c.class(DROPDOWN_CLASS)));
 

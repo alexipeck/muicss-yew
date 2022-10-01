@@ -18,7 +18,9 @@ impl Component for Main {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Main { props: ctx.props().to_owned() }
+        Main {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {

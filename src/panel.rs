@@ -1,6 +1,5 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
-use yew::html::Scope;
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct Props {
@@ -20,7 +19,9 @@ impl Component for Panel {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Panel { props: ctx.props().to_owned() }
+        Panel {
+            props: ctx.props().to_owned(),
+        }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
@@ -31,7 +32,7 @@ impl Component for Panel {
         self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         const PANEL_CLASS: &str = "mui-panel";
         let mut class = self.props.class.clone();
         class.push(PANEL_CLASS);
