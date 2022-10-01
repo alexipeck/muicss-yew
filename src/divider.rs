@@ -1,5 +1,4 @@
 use yew::prelude::*;
-use yew::html::Scope;
 
 pub struct Divider;
 
@@ -11,15 +10,15 @@ impl Component for Divider {
         Divider
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, _props: Self::Properties) -> bool {
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const DIVIDER_CLASS: &str = "mui-divider";
         let class = Classes::from(DIVIDER_CLASS);
         html! {

@@ -24,18 +24,19 @@ impl Component for Form {
         Form { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const FORM_CLASS: &str = "mui-form";
         const FORM_CLASS_INLINE: &str = "mui-form--inline";
-        let class = self.props.class.clone().extend(if self.props.inline {
+        let mut class = self.props.class.clone();
+        class.push(if self.props.inline {
             FORM_CLASS_INLINE
         } else {
             FORM_CLASS

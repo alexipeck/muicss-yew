@@ -23,15 +23,15 @@ impl Component for Example {
         Example { props }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <Panel>
                 <div>

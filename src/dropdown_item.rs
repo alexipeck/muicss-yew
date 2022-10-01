@@ -25,18 +25,18 @@ impl Component for DropdownItem {
         DropdownItem { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
             <li>
-                <a href={self.props.link.as_str()}
+                <a href={self.props.link.clone()}
                     onclick={&self.props.onclick}>
                     { self.props.children.clone() }
                 </a>

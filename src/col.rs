@@ -55,17 +55,18 @@ impl Component for Col {
         Col { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const COL_CLASS: &str = "mui-col";
-        let mut class = self.props.class.clone().extend(COL_CLASS);
+        let mut class = self.props.class.clone();
+        class.push(COL_CLASS);
         for (prefix, value, offset_value) in &self.props.responsive() {
             if let Some(value) = value {
                 class.push(&format!("{}-{}-{}", COL_CLASS, prefix, value));

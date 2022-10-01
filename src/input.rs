@@ -66,26 +66,30 @@ impl Component for Input {
         Input { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const TEXTFIELD_CLASS: &str = "mui-textfield";
         const FLOAT_LABEL_CLASS: &str = "mui-textfield--float-label";
         const INVALID_CLASS: &str = "mui--is-invalid";
-        let class = self
+        let mut class = self
             .props
             .class
-            .clone()
-            .extend(TEXTFIELD_CLASS)
-            .extend(self.props.invalid.then(|| INVALID_CLASS))
-            .extend(self.props.floating_label.then(|| FLOAT_LABEL_CLASS));
-
+            .clone();
+        class
+            .push(TEXTFIELD_CLASS);
+        if self.props.invalid {
+            class.push(INVALID_CLASS);
+        }
+        if self.props.floating_label {
+            class.push(FLOAT_LABEL_CLASS);
+        }
         let label = if self.props.children.is_empty() {
             Html::default()
         } else {
@@ -101,8 +105,8 @@ impl Component for Input {
                 <input type={self.props.input_type.input_type()}
                     onchange={&self.props.onchange}
                     disabled={self.props.disabled}
-                    placeholder={self.props.placeholder}
-                    value={self.props.value} />
+                    placeholder={self.props.placeholder.to_owned()}
+                    value={self.props.value.to_owned()} />
                 { label }
             </div>
         }

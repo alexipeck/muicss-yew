@@ -29,18 +29,18 @@ impl Component for Caret {
         Caret { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const CARET_CLASS: &str = "mui-caret";
-        let class =
-            Classes::from(CARET_CLASS).extend(self.props.direction.map(|c| c.class(CARET_CLASS)));
+        let mut class = Classes::from(CARET_CLASS);
+        class.push(self.props.direction.map(|c| c.class(CARET_CLASS)));
         html! {
             <span class={class}></span>
         }

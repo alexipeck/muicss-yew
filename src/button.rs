@@ -57,24 +57,24 @@ impl Component for Button {
         Button { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const BTN_CLASS: &str = "mui-btn";
-        let class = self
+        let mut class = self
             .props
             .class
-            .clone()
-            .extend(BTN_CLASS)
-            .extend(self.props.color.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.size.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.variant.map(|c| c.class(BTN_CLASS)));
+            .clone();
+        class.push(BTN_CLASS);
+        class.push(self.props.color.map(|c| c.class(BTN_CLASS)));
+        class.push(self.props.size.map(|c| c.class(BTN_CLASS)));
+        class.push(self.props.variant.map(|c| c.class(BTN_CLASS)));
 
         html! {
             <button class={class}

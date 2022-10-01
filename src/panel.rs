@@ -23,17 +23,18 @@ impl Component for Panel {
         Panel { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const PANEL_CLASS: &str = "mui-panel";
-        let class = self.props.class.clone().extend(PANEL_CLASS);
+        let mut class = self.props.class.clone();
+        class.push(PANEL_CLASS);
         html! {
             <div class={class}>
                 { self.props.children.clone() }

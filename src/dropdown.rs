@@ -66,32 +66,32 @@ impl Component for Dropdown {
         Dropdown { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn changed(&mut self, props: Self::Properties) -> bool {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const DROPDOWN_CLASS: &str = "mui-dropdown";
-        let class = self
+        let mut class = self
             .props
             .class
-            .clone()
-            .extend(DROPDOWN_CLASS)
-            .extend(self.props.placement.map(|c| c.class(DROPDOWN_CLASS)));
+            .clone();
+        class.push(DROPDOWN_CLASS);
+        class.push(self.props.placement.map(|c| c.class(DROPDOWN_CLASS)));
 
         const BTN_CLASS: &str = "mui-btn";
-        let button_class = Classes::from(BTN_CLASS)
-            .extend(self.props.color.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.size.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.variant.map(|c| c.class(BTN_CLASS)));
+        let mut button_class = Classes::from(BTN_CLASS);
+        button_class.push(self.props.color.map(|c| c.class(BTN_CLASS)));
+        button_class.push(self.props.size.map(|c| c.class(BTN_CLASS)));
+        button_class.push(self.props.variant.map(|c| c.class(BTN_CLASS)));
 
         const MENU_CLASS: &str = "mui-dropdown__menu";
-        let ul_class =
-            Classes::from(MENU_CLASS).extend(self.props.alignment.map(|c| c.class(MENU_CLASS)));
+        let mut ul_class = Classes::from(MENU_CLASS);
+        ul_class.push(self.props.alignment.map(|c| c.class(MENU_CLASS)));
 
         html! {
             <div class={class}>
