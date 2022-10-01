@@ -4,13 +4,13 @@ html! {
             <Caret />
         </div>
         <div>
-            <Caret direction=Direction::Up />
+            <Caret direction={Direction::Up} />
         </div>
         <div>
-            <Caret direction=Direction::Right />
+            <Caret direction={Direction::Right} />
         </div>
         <div>
-            <Caret direction=Direction::Left />
+            <Caret direction={Direction::Left} />
         </div>
     </>
 }

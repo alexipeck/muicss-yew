@@ -16,7 +16,7 @@ pub struct Container {
     props: Props,
 }
 
-impl Component for Container {
+impl yew::Component for Container {
     type Message = ();
     type Properties = Props;
 

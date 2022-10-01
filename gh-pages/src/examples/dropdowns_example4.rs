@@ -1,7 +1,7 @@
 html! {
     <>
         <div>
-            <Dropdown label="Dropleft" color=Color::Primary placement=Placement::Left>
+            <Dropdown label="Dropleft" color={Color::Primary} placement={Placement::Left}>
                 <DropdownItem link="#">
                     { "Option 1" }
                 </DropdownItem>
@@ -17,7 +17,7 @@ html! {
             </Dropdown>
         </div>
         <div>
-            <Dropdown label="Dropleft (bottom aligned)" color=Color::Primary placement=Placement::Left alignment=Alignment::Bottom>
+            <Dropdown label="Dropleft (bottom aligned)" color={Color::Primary} placement={Placement::Left} alignment={Alignment::Bottom}>
                 <DropdownItem link="#">
                     { "Option 1" }
                 </DropdownItem>
