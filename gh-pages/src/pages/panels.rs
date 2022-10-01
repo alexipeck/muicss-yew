@@ -10,7 +10,7 @@ impl Component for PanelExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         PanelExamples
     }
 
@@ -41,7 +41,7 @@ impl PanelExamples {
                 <h1>
                     { "Panels" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/react/panels">
@@ -56,7 +56,7 @@ impl PanelExamples {
     fn example1(&self) -> Html {
         html! {
             <>
-                <Example code=include_str!("../examples/panel_example1.rs")>
+                <Example code={include_str!("../examples/panel_example1.rs")}>
                     { include!("../examples/panel_example1.rs") }
                 </Example>
             </>

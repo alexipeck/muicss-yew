@@ -10,7 +10,7 @@ impl Component for ButtonExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         ButtonExamples
     }
 
@@ -45,7 +45,7 @@ impl ButtonExamples {
                 <h1>
                     { "Buttons" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/css-js/buttons">
@@ -63,7 +63,7 @@ impl ButtonExamples {
                 <h2>
                     { "Default Buttons" }
                 </h2>
-                <Example code=include_str!("../examples/buttons_example1.rs")>
+                <Example code={include_str!("../examples/buttons_example1.rs")}>
                     { include!("../examples/buttons_example1.rs") }
                 </Example>
             </>
@@ -76,7 +76,7 @@ impl ButtonExamples {
                 <h2>
                     { "Flat Buttons" }
                 </h2>
-                <Example code=include_str!("../examples/buttons_example2.rs")>
+                <Example code={include_str!("../examples/buttons_example2.rs")}>
                     { include!("../examples/buttons_example2.rs") }
                 </Example>
             </>
@@ -89,7 +89,7 @@ impl ButtonExamples {
                 <h2>
                     { "Raised Buttons" }
                 </h2>
-                <Example code=include_str!("../examples/buttons_example3.rs")>
+                <Example code={include_str!("../examples/buttons_example3.rs")}>
                     { include!("../examples/buttons_example3.rs") }
                 </Example>
             </>
@@ -102,7 +102,7 @@ impl ButtonExamples {
                 <h2>
                     { "Floating Action Buttons" }
                 </h2>
-                <Example code=include_str!("../examples/buttons_example4.rs")>
+                <Example code={include_str!("../examples/buttons_example4.rs")}>
                     { include!("../examples/buttons_example4.rs") }
                 </Example>
             </>
@@ -115,7 +115,7 @@ impl ButtonExamples {
                 <h2>
                     { "Buttons sizes" }
                 </h2>
-                <Example code=include_str!("../examples/buttons_example5.rs")>
+                <Example code={include_str!("../examples/buttons_example5.rs")}>
                     { include!("../examples/buttons_example5.rs") }
                 </Example>
             </>

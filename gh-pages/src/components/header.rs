@@ -10,7 +10,7 @@ impl Component for Header {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         Header
     }
 
@@ -31,7 +31,7 @@ impl Component for Header {
                             <tbody>
                                 <tr class="mui--appbar-height">
                                     <td class="mui--text-headline">
-                                        <AppAnchor route=AppRoute::Home>
+                                        <AppAnchor route={AppRoute::Home}>
                                             <span id="title" >
                                                 { "MUICSS-Yew" }
                                             </span>

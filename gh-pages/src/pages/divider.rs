@@ -10,7 +10,7 @@ impl Component for DividerExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(ctx: &Context<Self>) -> Self {
         DividerExamples
     }
 
@@ -41,7 +41,7 @@ impl DividerExamples {
                 <h1>
                     { "Divider" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/css-js/dividers">
@@ -56,7 +56,7 @@ impl DividerExamples {
     fn example1(&self) -> Html {
         html! {
             <>
-                <Example code=include_str!("../examples/divider_example1.rs")>
+                <Example code={include_str!("../examples/divider_example1.rs")}>
                     { include!("../examples/divider_example1.rs") }
                 </Example>
             </>

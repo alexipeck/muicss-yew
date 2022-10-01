@@ -17,7 +17,7 @@ impl Component for Model {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         Model
     }
 
@@ -34,7 +34,7 @@ impl Component for Model {
             <>
                 <Header />
                 <Main>
-                    <AppRouter render=Router::render(Self::switch) />
+                    <AppRouter render={Router::render(Self::switch)} />
                 </Main>
             </>
         }

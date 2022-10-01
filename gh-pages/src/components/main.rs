@@ -17,8 +17,8 @@ impl Component for Main {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: &Scope<Self>) -> Self {
-        Main { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Main { props: ctx.props().to_owned() }
     }
 
     fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {

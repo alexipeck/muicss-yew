@@ -10,7 +10,7 @@ impl Component for AppbarExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         AppbarExamples
     }
 
@@ -42,7 +42,7 @@ impl AppbarExamples {
                 <h1>
                     { "Appbar" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/css-js/appbar">
@@ -60,7 +60,7 @@ impl AppbarExamples {
                 <h2>
                     { "Container Element" }
                 </h2>
-                <Example code=include_str!("../examples/appbar_example1.rs")>
+                <Example code={include_str!("../examples/appbar_example1.rs")}>
                     { include!("../examples/appbar_example1.rs") }
                 </Example>
             </>
@@ -73,7 +73,7 @@ impl AppbarExamples {
                 <h2>
                     { "Helpers" }
                 </h2>
-                <Example code=include_str!("../examples/appbar_example2.rs")>
+                <Example code={include_str!("../examples/appbar_example2.rs")}>
                     { include!("../examples/appbar_example2.rs") }
                 </Example>
             </>

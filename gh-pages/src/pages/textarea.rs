@@ -10,7 +10,7 @@ impl Component for TextareaExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         TextareaExamples
     }
 
@@ -43,7 +43,7 @@ impl TextareaExamples {
                 <h1>
                     { "Textarea" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/react/textarea">
@@ -62,7 +62,7 @@ impl TextareaExamples {
                 <h2>
                     { "Basic example" }
                 </h2>
-                <Example code=include_str!("../examples/textarea_example1.rs")>
+                <Example code={include_str!("../examples/textarea_example1.rs")}>
                     { include!("../examples/textarea_example1.rs") }
                 </Example>
             </>
@@ -75,7 +75,7 @@ impl TextareaExamples {
                 <h2>
                     { "Fixed labels" }
                 </h2>
-                <Example code=include_str!("../examples/textarea_example2.rs")>
+                <Example code={include_str!("../examples/textarea_example2.rs")}>
                     { include!("../examples/textarea_example2.rs") }
                 </Example>
             </>
@@ -88,7 +88,7 @@ impl TextareaExamples {
                 <h2>
                     { "Floating labels" }
                 </h2>
-                <Example code=include_str!("../examples/textarea_example3.rs")>
+                <Example code={include_str!("../examples/textarea_example3.rs")}>
                     { include!("../examples/textarea_example3.rs") }
                 </Example>
             </>

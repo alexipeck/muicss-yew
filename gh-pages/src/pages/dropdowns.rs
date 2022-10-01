@@ -14,7 +14,7 @@ impl Component for DropdownExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         DropdownExamples
     }
 
@@ -50,7 +50,7 @@ use muicss_yew::dropdown_item::DropdownItem;"#;
                 <h1>
                     { "Dropdowns" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/css-js/dropdowns">
@@ -68,7 +68,7 @@ use muicss_yew::dropdown_item::DropdownItem;"#;
                 <h2>
                     { "Dropdown (default)" }
                 </h2>
-                <Example code=include_str!("../examples/dropdowns_example1.rs")>
+                <Example code={include_str!("../examples/dropdowns_example1.rs")}>
                     { include!("../examples/dropdowns_example1.rs") }
                 </Example>
             </>
@@ -81,7 +81,7 @@ use muicss_yew::dropdown_item::DropdownItem;"#;
                 <h2>
                     { "Dropup" }
                 </h2>
-                <Example code=include_str!("../examples/dropdowns_example2.rs")>
+                <Example code={include_str!("../examples/dropdowns_example2.rs")}>
                     { include!("../examples/dropdowns_example2.rs") }
                 </Example>
             </>
@@ -94,7 +94,7 @@ use muicss_yew::dropdown_item::DropdownItem;"#;
                 <h2>
                     { "Dropright" }
                 </h2>
-                <Example code=include_str!("../examples/dropdowns_example3.rs")>
+                <Example code={include_str!("../examples/dropdowns_example3.rs")}>
                     { include!("../examples/dropdowns_example3.rs") }
                 </Example>
             </>
@@ -107,7 +107,7 @@ use muicss_yew::dropdown_item::DropdownItem;"#;
                 <h2>
                     { "Dropleft" }
                 </h2>
-                <Example code=include_str!("../examples/dropdowns_example4.rs")>
+                <Example code={include_str!("../examples/dropdowns_example4.rs")}>
                     { include!("../examples/dropdowns_example4.rs") }
                 </Example>
             </>

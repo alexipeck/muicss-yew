@@ -10,7 +10,7 @@ impl Component for CheckboxExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         CheckboxExamples
     }
 
@@ -41,7 +41,7 @@ impl CheckboxExamples {
                 <h1>
                     { "Checkbox" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/react/checkbox">
@@ -57,7 +57,7 @@ impl CheckboxExamples {
     fn example1(&self) -> Html {
         html! {
             <>
-                <Example code=include_str!("../examples/checkbox_example1.rs")>
+                <Example code={include_str!("../examples/checkbox_example1.rs")}>
                     { include!("../examples/checkbox_example1.rs") }
                 </Example>
             </>

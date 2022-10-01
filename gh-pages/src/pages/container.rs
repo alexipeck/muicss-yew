@@ -10,7 +10,7 @@ impl Component for ContainerExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: &Scope<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         ContainerExamples
     }
 
@@ -42,7 +42,7 @@ impl ContainerExamples {
                 <h1>
                     { "Container" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/css-js/container">
@@ -60,7 +60,7 @@ impl ContainerExamples {
                 <h2>
                     { "Fixed Container" }
                 </h2>
-                <Example code=include_str!("../examples/container_example1.rs")>
+                <Example code={include_str!("../examples/container_example1.rs")}>
                     { include!("../examples/container_example1.rs") }
                 </Example>
             </>
@@ -73,7 +73,7 @@ impl ContainerExamples {
                 <h2>
                     { "Fluid Container" }
                 </h2>
-                <Example code=include_str!("../examples/container_example2.rs")>
+                <Example code={include_str!("../examples/container_example2.rs")}>
                     { include!("../examples/container_example2.rs") }
                 </Example>
             </>
