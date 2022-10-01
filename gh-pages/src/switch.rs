@@ -2,8 +2,9 @@
 
 use yew::virtual_dom::VComp;
 use yew_router::prelude::*;
+use web_sys::Url;
 
-#[derive(Debug, Clone, Copy, PartialEq, Routable)]
+#[derive(Debug, Clone, Copy, PartialEq, Routable, Switch)]
 pub enum AppRoute {
     #[at("/#appbar")]
     Appbar,
