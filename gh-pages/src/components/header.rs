@@ -10,19 +10,19 @@ impl Component for Header {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         Header
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <header>
                 <Appbar>
@@ -31,7 +31,7 @@ impl Component for Header {
                             <tbody>
                                 <tr class="mui--appbar-height">
                                     <td class="mui--text-headline">
-                                        <AppAnchor route=AppRoute::Home>
+                                        <AppAnchor route={AppRoute::Home}>
                                             <span id="title" >
                                                 { "MUICSS-Yew" }
                                             </span>

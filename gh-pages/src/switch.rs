@@ -1,36 +1,35 @@
 //! Borrowed from [Yew's router example](https://github.com/yewstack/yew/tree/master/examples/router).
 
 use yew::{
-    virtual_dom::{Transformer, VComp},
-    web_sys::Url,
+    virtual_dom::VComp,
 };
 use yew_router::prelude::*;
 
-#[derive(Clone, Debug, Switch)]
+#[derive(Debug, Clone, Copy, PartialEq, Routable)]
 pub enum AppRoute {
-    #[to = "/#appbar"]
+    #[at("/#appbar")]
     Appbar,
-    #[to = "/#buttons"]
+    #[at("/#buttons")]
     Buttons,
-    #[to = "/#caret"]
+    #[at("/#caret")]
     Caret,
-    #[to = "/#checkbox"]
+    #[at("/#checkbox")]
     Checkbox,
-    #[to = "/#container"]
+    #[at("/#container")]
     Container,
-    #[to = "/#divider"]
+    #[at("/#divider")]
     Divider,
-    #[to = "/#dropdowns"]
+    #[at("/#dropdowns")]
     Dropdowns,
-    #[to = "/#grid"]
+    #[at("/#grid")]
     Grid,
-    #[to = "/#input"]
+    #[at("/#input")]
     Input,
-    #[to = "/#panels"]
+    #[at("/#panels")]
     Panels,
-    #[to = "/#textarea"]
+    #[at("/#textarea")]
     Textarea,
-    #[to = "/"]
+    #[at("/")]
     Home,
 }
 

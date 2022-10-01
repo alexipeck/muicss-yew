@@ -10,19 +10,19 @@ impl Component for CaretExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         CaretExamples
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
                 { self.introduction() }
@@ -41,7 +41,7 @@ impl CaretExamples {
                 <h1>
                     { "Caret" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "MUI's website doesn't have a page for this component." }
                 </p>
@@ -52,7 +52,7 @@ impl CaretExamples {
     fn example1(&self) -> Html {
         html! {
             <>
-                <Example code=include_str!("../examples/caret_example1.rs")>
+                <Example code={include_str!("../examples/caret_example1.rs")}>
                     { include!("../examples/caret_example1.rs") }
                 </Example>
             </>

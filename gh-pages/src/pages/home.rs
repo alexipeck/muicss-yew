@@ -9,19 +9,19 @@ impl Component for Home {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         Home
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
                 { self.introduction() }
@@ -85,11 +85,11 @@ muicss-yew = { git = "https://github.com/AlephAlpha/muicss-yew" }"#;
                 <p>
                     { "Add these two lines to your static html file:" }
                 </p>
-                <Prism code=Self::STATIC_HTML language="html" />
+                <Prism code={Self::STATIC_HTML} language="html" />
                 <p>
                     { "Add muicss-yew to your Cargo.toml:" }
                 </p>
-                <Prism code=Self::CARGO_TOML language="toml" />
+                <Prism code={Self::CARGO_TOML} language="toml" />
                 <p>
                     { "For details, please see the examples." }
                 </p>
@@ -105,57 +105,57 @@ muicss-yew = { git = "https://github.com/AlephAlpha/muicss-yew" }"#;
                 </h2>
                 <ul>
                     <li>
-                        <AppAnchor route=AppRoute::Appbar>
+                        <AppAnchor route={AppRoute::Appbar}>
                             { "Appbar" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Buttons>
+                        <AppAnchor route={AppRoute::Buttons}>
                             { "Buttons" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Caret>
+                        <AppAnchor route={AppRoute::Caret}>
                             { "Caret" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Checkbox>
+                        <AppAnchor route={AppRoute::Checkbox}>
                             { "Checkbox" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Container>
+                        <AppAnchor route={AppRoute::Container}>
                             { "Container" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Divider>
+                        <AppAnchor route={AppRoute::Divider}>
                             { "Divider" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Dropdowns>
+                        <AppAnchor route={AppRoute::Dropdowns}>
                             { "Dropdowns" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Grid>
+                        <AppAnchor route={AppRoute::Grid}>
                             { "Grid" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Input>
+                        <AppAnchor route={AppRoute::Input}>
                             { "Input" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Panels>
+                        <AppAnchor route={AppRoute::Panels}>
                             { "Panels" }
                         </AppAnchor>
                     </li>
                     <li>
-                        <AppAnchor route=AppRoute::Textarea>
+                        <AppAnchor route={AppRoute::Textarea}>
                             { "Textarea" }
                         </AppAnchor>
                     </li>

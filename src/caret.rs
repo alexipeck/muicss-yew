@@ -1,5 +1,6 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
+use yew::html::Scope;
 
 prop_enum! {
     Direction {
@@ -24,24 +25,24 @@ impl Component for Caret {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Caret { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Caret { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const CARET_CLASS: &str = "mui-caret";
-        let class =
-            Classes::from(CARET_CLASS).extend(self.props.direction.map(|c| c.class(CARET_CLASS)));
+        let mut class = Classes::from(CARET_CLASS);
+        class.push(self.props.direction.map(|c| c.class(CARET_CLASS)));
         html! {
-            <span class=class></span>
+            <span class={class}></span>
         }
     }
 }

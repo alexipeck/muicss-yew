@@ -10,19 +10,19 @@ impl Component for TextareaExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         TextareaExamples
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
                 { self.introduction() }
@@ -43,7 +43,7 @@ impl TextareaExamples {
                 <h1>
                     { "Textarea" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/react/textarea">
@@ -62,7 +62,7 @@ impl TextareaExamples {
                 <h2>
                     { "Basic example" }
                 </h2>
-                <Example code=include_str!("../examples/textarea_example1.rs")>
+                <Example code={include_str!("../examples/textarea_example1.rs")}>
                     { include!("../examples/textarea_example1.rs") }
                 </Example>
             </>
@@ -75,7 +75,7 @@ impl TextareaExamples {
                 <h2>
                     { "Fixed labels" }
                 </h2>
-                <Example code=include_str!("../examples/textarea_example2.rs")>
+                <Example code={include_str!("../examples/textarea_example2.rs")}>
                     { include!("../examples/textarea_example2.rs") }
                 </Example>
             </>
@@ -88,7 +88,7 @@ impl TextareaExamples {
                 <h2>
                     { "Floating labels" }
                 </h2>
-                <Example code=include_str!("../examples/textarea_example3.rs")>
+                <Example code={include_str!("../examples/textarea_example3.rs")}>
                     { include!("../examples/textarea_example3.rs") }
                 </Example>
             </>

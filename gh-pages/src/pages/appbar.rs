@@ -10,19 +10,19 @@ impl Component for AppbarExamples {
     type Message = ();
     type Properties = ();
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    fn create(_ctx: &Context<Self>) -> Self {
         AppbarExamples
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+    fn changed(&mut self, _props: Self::Properties) -> bool {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
                 { self.introduction() }
@@ -42,7 +42,7 @@ impl AppbarExamples {
                 <h1>
                     { "Appbar" }
                 </h1>
-                <Prism code=Self::IMPORT language="rust" />
+                <Prism code={Self::IMPORT} language="rust" />
                 <p>
                     { "See " }
                     <a href="https://www.muicss.com/docs/v1/css-js/appbar">
@@ -60,7 +60,7 @@ impl AppbarExamples {
                 <h2>
                     { "Container Element" }
                 </h2>
-                <Example code=include_str!("../examples/appbar_example1.rs")>
+                <Example code={include_str!("../examples/appbar_example1.rs")}>
                     { include!("../examples/appbar_example1.rs") }
                 </Example>
             </>
@@ -73,7 +73,7 @@ impl AppbarExamples {
                 <h2>
                     { "Helpers" }
                 </h2>
-                <Example code=include_str!("../examples/appbar_example2.rs")>
+                <Example code={include_str!("../examples/appbar_example2.rs")}>
                     { include!("../examples/appbar_example2.rs") }
                 </Example>
             </>

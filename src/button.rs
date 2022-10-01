@@ -1,5 +1,6 @@
 use yew::prelude::*;
 use yewtil::NeqAssign;
+use yew::html::Scope;
 
 prop_enum! {
     Color {
@@ -52,33 +53,33 @@ impl Component for Button {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Button { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Button { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const BTN_CLASS: &str = "mui-btn";
-        let class = self
+        let mut class = self
             .props
             .class
-            .clone()
-            .extend(BTN_CLASS)
-            .extend(self.props.color.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.size.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.variant.map(|c| c.class(BTN_CLASS)));
+            .clone();
+        class.push(BTN_CLASS);
+        class.push(self.props.color.map(|c| c.class(BTN_CLASS)));
+        class.push(self.props.size.map(|c| c.class(BTN_CLASS)));
+        class.push(self.props.variant.map(|c| c.class(BTN_CLASS)));
 
         html! {
-            <button class=class
-                onclick=&self.props.onclick
-                disabled=self.props.disabled>
+            <button class={class}
+                onclick={&self.props.onclick}
+                disabled={self.props.disabled}>
                 { self.props.children.clone() }
             </button>
         }

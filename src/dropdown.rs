@@ -5,6 +5,7 @@ use crate::{
 };
 use yew::prelude::*;
 use yewtil::NeqAssign;
+use yew::html::Scope;
 
 prop_enum! {
     Placement {
@@ -61,46 +62,46 @@ impl Component for Dropdown {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Dropdown { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Dropdown { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         const DROPDOWN_CLASS: &str = "mui-dropdown";
-        let class = self
+        let mut class = self
             .props
             .class
-            .clone()
-            .extend(DROPDOWN_CLASS)
-            .extend(self.props.placement.map(|c| c.class(DROPDOWN_CLASS)));
+            .clone();
+        class.push(DROPDOWN_CLASS);
+        class.push(self.props.placement.map(|c| c.class(DROPDOWN_CLASS)));
 
         const BTN_CLASS: &str = "mui-btn";
-        let button_class = Classes::from(BTN_CLASS)
-            .extend(self.props.color.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.size.map(|c| c.class(BTN_CLASS)))
-            .extend(self.props.variant.map(|c| c.class(BTN_CLASS)));
+        let mut button_class = Classes::from(BTN_CLASS);
+        button_class.push(self.props.color.map(|c| c.class(BTN_CLASS)));
+        button_class.push(self.props.size.map(|c| c.class(BTN_CLASS)));
+        button_class.push(self.props.variant.map(|c| c.class(BTN_CLASS)));
 
         const MENU_CLASS: &str = "mui-dropdown__menu";
-        let ul_class =
-            Classes::from(MENU_CLASS).extend(self.props.alignment.map(|c| c.class(MENU_CLASS)));
+        let mut ul_class = Classes::from(MENU_CLASS);
+        ul_class.push(self.props.alignment.map(|c| c.class(MENU_CLASS)));
 
         html! {
-            <div class=class>
-                <button class=button_class
-                    disabled=self.props.disabled
+            <div class={class}>
+                <button class={button_class}
+                    disabled={self.props.disabled}
                     data-mui-toggle="dropdown">
                     { &self.props.label }
-                    <Caret direction=self.props.placement.map(Placement::direction) />
+                    <Caret direction={self.props.placement.map(Placement::direction)} />
                 </button>
-                <ul class=ul_class>
+                <ul class={ul_class}>
                     { self.props.children.clone() }
                 </ul>
             </div>

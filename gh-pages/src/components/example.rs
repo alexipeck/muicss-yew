@@ -2,6 +2,7 @@ use muicss_yew::panel::Panel;
 use yew::prelude::*;
 use yew_prism::Prism;
 use yewtil::NeqAssign;
+use yew::{Component, Context, Html};
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct Props {
@@ -19,25 +20,25 @@ impl Component for Example {
     type Message = ();
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Example { props }
+    fn create(ctx: &Context<Self>) -> Self {
+        Example { props: ctx.props().to_owned() }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
         false
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.props.neq_assign(props)
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        self.props.neq_assign(ctx.props().to_owned())
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <Panel>
                 <div>
                     { self.props.children.clone() }
                 </div>
-                <Prism code=self.props.code.clone() language="rust" />
+                <Prism code={self.props.code.clone()} language="rust" />
             </Panel>
         }
     }
